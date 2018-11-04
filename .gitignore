@@ -1,0 +1,8 @@
+#files to be ignore by git when pushing
+
+#dependencies
+/node_modules
+
+#mongo db
+/data
+/log

@@ -1,0 +1,41 @@
+@media only screen and (max-width: 768px) {
+	#FilesBox{
+		flex-grow: 1;
+	}
+}
+
+#UploadBox{
+	margin: 1%;
+}
+
+ul {
+	list-style: none outside none;
+	padding:0;
+}
+
+i {
+	padding-right: 2%;
+}
+
+li {
+	padding: 1%;
+}
+
+li:hover{
+	cursor:pointer;
+	background-color: #e8e8e8;
+}
+
+.delete {
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    overflow: hidden;
+	outline:none;
+	color: #ff5151;
+}
+
+.delete:hover{
+	cursor:pointer;
+	color: #fc3c3c;
+}

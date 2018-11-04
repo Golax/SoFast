@@ -1,0 +1,13 @@
+<%- include('subtitle.ejs'); %>
+<div id="FilesBox">
+	<ul id="fList"></ul>
+</div>
+<div id="UploadBox">
+	<input id="fUpload" type="file" multiple>
+</div>
+
+<script>var session_id = "<%= session_id %>";</script>
+<!-- JS SCRIPT -->
+<script src="/js/delivery.js"></script>
+<script src="/js/started.js"></script>
+<script src="/js/socket.js"></script>

@@ -1,0 +1,18 @@
+{
+  "name": "sofast",
+  "version": "1.0.0",
+  "description": "File sharing ultra fast!",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Giulio!",
+  "license": "ISC",
+  "dependencies": {
+    "delivery": "0.0.6",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "mongodb": "^3.1.8",
+    "socket.io": "^2.1.1"
+  }
+}
