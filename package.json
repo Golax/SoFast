@@ -9,10 +9,9 @@
   "author": "Giulio!",
   "license": "ISC",
   "dependencies": {
-    "delivery": "0.0.6",
     "ejs": "^2.6.1",
     "express": "^4.16.4",
-    "mongodb": "^3.1.8",
-    "socket.io": "^2.1.1"
+    "socket.io": "^2.1.1",
+    "socket.io-file": "^2.0.3"
   }
 }

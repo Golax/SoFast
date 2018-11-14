@@ -1,4 +1,12 @@
-<%- include('subtitle.ejs'); %>
+<div id="Header-Subtitle-Box">
+	<div id="Subtitle">
+		<span>Upload your files here!</span>
+	</div>
+	<div id='LinkBox'>
+		<button id='clipboard' onclick="copyToClipboard()">Share your link: copy to clipboard!</span>
+	</div>
+</div>
+
 <div id="FilesBox">
 	<ul id="fList"></ul>
 </div>
@@ -6,8 +14,10 @@
 	<input id="fUpload" type="file" multiple>
 </div>
 
-<script>var session_id = "<%= session_id %>";</script>
+
 <!-- JS SCRIPT -->
-<script src="/js/delivery.js"></script>
+<script src= "/js/socket.io.js"></script>
+<script src= "/js/socket.io-file-client.js"></script>
 <script src="/js/started.js"></script>
-<script src="/js/socket.js"></script>
+<script src="/js/socket-client.js"></script>
+<script src="/js/subtitle.js"></script>
