@@ -51,20 +51,29 @@ function fillNew() {
 		node.setAttribute("class", "file");
 		var text = document.createTextNode(new_files[file].name);
 		node.appendChild(text);
-		var icon = document.createElement("i");
-		icon.setAttribute("class", "fas fa-trash-alt delete");
-		icon.addEventListener("click", (event) => removeFile(event), false);
-		node.appendChild(icon);
+		var trash = document.createElement("i");
+		trash.setAttribute("class", "fas fa-trash-alt delete");
+		trash.addEventListener("click", (event) => removeFile(event), false);
+		node.appendChild(trash);
+		var downloadLink = document.createElement("a");
+		downloadLink.setAttribute("href", "/files" + window.location.pathname + '/' + new_files[file].name);
+		downloadLink.setAttribute("download", new_files[file].name);
+		var downloadIcon = document.createElement("i");
+		downloadIcon.setAttribute("class", "fas fa-download download");
+		downloadLink.appendChild(downloadIcon);
+		node.appendChild(downloadLink);
 		document.getElementById("fList").appendChild(node);
 		
 	}
 }
 
-//rimuove un elemento sia dalla lista che da files
+//rimuove un elemento sia dalla lista che da files in base al bottone che la invoca
 function removeFile(event){
 	for(var file in files)
-		if(files[file].name==event.target.parentNode.parentNode.id)
+		if(files[file].name==event.target.parentNode.id){
+			deleteFile(files[file]);
 			files.splice(file, 1);
+		}
 	event.target.parentNode.remove();
 }
 

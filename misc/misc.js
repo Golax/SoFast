@@ -1,4 +1,8 @@
-const fs = require('fs');
+//MODULE FOR FILE AND SERVER OPERATIONS\
+//IT IS A LIBRARY OF FUNCTIONS
+
+
+const fs = require('fs-extra');
 const path = require('path');
 
 exports.readFilesSync = function(dir, files = []) {
@@ -15,7 +19,7 @@ exports.readFilesSync = function(dir, files = []) {
 	return files;
 }
 
-exports.readFileSync = (filePath) =>	{
+exports.readFileSync = function(filePath)	{
 	const name = path.parse(filePath).name + path.parse(filePath).ext;
 	const ext = path.parse(filePath).ext;
 	const stat = fs.statSync(filePath);
@@ -23,3 +27,7 @@ exports.readFileSync = (filePath) =>	{
 	if (stat.isFile) 
 		return { filePath, name, ext, stat };
 }
+
+exports.deleteFileSync = (filePath) => fs.unlinkSync(filePath);
+
+exports.deleteDirSync = (dirPath) => fs.removeSync(dirPath);

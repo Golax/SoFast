@@ -29,10 +29,21 @@ li:hover{
 .delete {
 	padding-left: 2%;
 	font-size: 100%;
-	color: #ff2f2f;
+	color: #c40000;
 }
 
 .delete:hover{
 	cursor:pointer;
 	color: #fc3c3c;
+}
+
+.download {
+	padding-left: 2%;
+	font-size: 100%;
+	color: #008c46;
+}
+
+.download:hover{
+	cursor:pointer;
+	color: #00b95c;
 }

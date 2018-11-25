@@ -2,36 +2,44 @@
 <html>
 
 <head>
-	<title>HomePage!</title>
-	<base href="/">
+	<title>SoFast!</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
 	 crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="/stylesheets/index.css">
-	<link rel="stylesheet" type="text/css" href="/stylesheets/start.css">
-	<link rel="stylesheet" type="text/css" href="/stylesheets/subtitle.css">
-	<link rel="stylesheet" type="text/css" href="/stylesheets/filelist.css">
-	
-	<!-- EJS -->
-	<script src="/js/ejs.js"></script>
+	<% if(!started) {%>
+		<link rel="stylesheet" type="text/css" href="/stylesheets/start.css">
+	<%} else {%>
+		<link rel="stylesheet" type="text/css" href="/stylesheets/subtitle.css">
+		<link rel="stylesheet" type="text/css" href="/stylesheets/filelist.css">
+	<%}%>
 </head>
 
 <body>
-	<div id="container">
-		<div id="content">
-			<div>
-				<h1 class="title">SoFast!</h1>
+	<div class="outer">
+		<div class="middle">
+			<div class="inner">
+				<%- include('header.ejs'); %>
+				<% if(!started) {%>
+					<%- include('start.ejs'); %>
+				<% } else{ %>
+					<%- include('started.ejs'); %>
+				<% } %>
+				<%- include('bottom.ejs'); %>	 
 			</div>
-			<% if(!started) {%>
-				<%- include('start.ejs'); %>
-			<% } else{ %>
-				<%- include('started.ejs'); %>
-			<% } %>
 		</div>
-		<div id="bottom">
-			<span>Proudly made by Golinelli Giulio: hiimgiulio@gmail.com</span>
-		</div>	 
 	</div>
+	
+	
+	<!-- JS SCRIPT -->
+	<script src="/js/ejs.js"></script>
+	<% if(started) {%>
+		<script src= "/js/socket.io.js"></script>
+		<script src= "/js/socket.io-file-client.js"></script>
+		<script src="/js/started.js"></script>
+		<script src="/js/socket-client.js"></script>
+		<script src="/js/subtitle.js"></script>
+	<%}%>
 </body>
 
 </html>
