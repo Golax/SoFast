@@ -1,0 +1,19 @@
+.Start{
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	align-items: stretch;
+	border-right: 1px solid black;
+	border-left: 1px solid black;
+}
+
+.carousel{
+	/* display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap; */
+	flex: 2 0 0;
+}
+
+.button-box{
+	flex: 1 100%;
+}
