@@ -1,6 +1,8 @@
 var files = [];
 var new_files = [];
 
+window.onload = isEmpty();
+
 //ascolta se ci sono nuovi file e li aggiorna
 document.getElementById("fUpload").addEventListener("change", (event) => {
 	uploadNewFiles(document.getElementById("fUpload"));
@@ -45,36 +47,45 @@ Element.prototype.remove = function () {
 
 //riempie la lista con i file
 function fillNew() {
-	for (var file in new_files) {
-		var node = document.createElement("li");
-		node.setAttribute("id", new_files[file].name);
-		node.setAttribute("class", "file");
-		var text = document.createTextNode(new_files[file].name);
-		node.appendChild(text);
-		var trash = document.createElement("i");
-		trash.setAttribute("class", "fas fa-trash-alt delete");
-		trash.addEventListener("click", (event) => removeFile(event), false);
-		node.appendChild(trash);
-		var downloadLink = document.createElement("a");
-		downloadLink.setAttribute("href", "/files" + window.location.pathname + '/' + new_files[file].name);
-		downloadLink.setAttribute("download", new_files[file].name);
-		var downloadIcon = document.createElement("i");
-		downloadIcon.setAttribute("class", "fas fa-download download");
-		downloadLink.appendChild(downloadIcon);
-		node.appendChild(downloadLink);
+	for (var file in new_files){
+		var node = document.createElement("div");
+		node.id = new_files[file].name;
+		node.setAttribute("class", "row");
+			var nodeinfo = document.createElement("div");
+			nodeinfo.setAttribute("class", "item")
+				var nodefilepic = document.createElement("i");
+				nodefilepic.setAttribute("class", "far fa-file");
+				nodeinfo.appendChild(nodefilepic);
+				var nodefilename = document.createTextNode(new_files[file].name);
+				nodeinfo.appendChild(nodefilename);
+			var nodeactions = document.createElement("div");
+			nodeactions.setAttribute("class", "item");
+				var downloadLink = document.createElement("a");
+				downloadLink.setAttribute("href", "/files" + window.location.pathname + '/' + new_files[file].name);
+				downloadLink.setAttribute("download", new_files[file].name);
+					var downloadIcon = document.createElement("i");
+					downloadIcon.setAttribute("class", "fas fa-download download");
+					downloadLink.appendChild(downloadIcon);
+				nodeactions.appendChild(downloadLink);
+				var trash = document.createElement("i");
+				trash.setAttribute("class", "far fa-trash-alt delete");
+				trash.addEventListener("click", (event) => removeFile(event), false);
+				nodeactions.appendChild(trash);
+			node.appendChild(nodeinfo);
+			node.appendChild(nodeactions);
 		document.getElementById("fList").appendChild(node);
-		
 	}
 }
 
 //rimuove un elemento sia dalla lista che da files in base al bottone che la invoca
 function removeFile(event){
 	for(var file in files)
-		if(files[file].name==event.target.parentNode.id){
+		if(files[file].name==event.target.parentNode.parentNode.id){
 			deleteFile(files[file]);
 			files.splice(file, 1);
 		}
-	event.target.parentNode.remove();
+	event.target.parentNode.parentNode.remove();
+	isEmpty();
 }
 
 //trasforma i nuovi files in vecchi files
@@ -87,4 +98,28 @@ function getOlder(){
 function updateList() {
 	fillNew();
 	getOlder();
+	isEmpty();
+}
+
+//copy to clipboard
+function copyToClipboard() {
+	const el = document.createElement('textarea');
+	el.value = window.location.href;
+	el.setAttribute('readonly', '');
+	el.style.position = 'absolute';
+	el.style.left = '-9999px';
+	document.body.appendChild(el);
+	el.select();
+	document.execCommand('copy');
+	document.body.removeChild(el);
+	alert("link copied!");
+};
+
+
+//controlla se l'elemento flist contiene dei file, se si, li mostra altrimenti fa fuoriuscire il ban che non ha file
+function isEmpty(){
+	if(document.getElementById("fList").childElementCount > 1)
+		document.getElementById("noFiles").style.display = "none";
+	else
+		document.getElementById("noFiles").style.display = "block";
 }

@@ -27,10 +27,3 @@ app.use("/:session([A-Za-z0-9]+)", require("./routes/session.js"));
 app.get('*', (req, res) => res.render("404.ejs"));
 
 server.listen(port, () => console.log(`Server on port: ${port}.`));
-
-/*	
-TODO:
-	-frontend start:
-		-far si che il middle flexi per occupare un pò di spazio sullo schermo
-		-finire bottono start con sfumature
-*/

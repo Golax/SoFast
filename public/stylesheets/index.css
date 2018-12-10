@@ -1,10 +1,14 @@
-@import url('https://fonts.googleapis.com/css?family=Chakra+Petch:500i|Playfair+Display:700i|Roboto+Condensed:700i');
+@import url('https://fonts.googleapis.com/css?family=Baloo+Bhai');
+@import url('https://fonts.googleapis.com/css?family=Roboto:300i,400,500i');
 
 body {
 	margin: 0;
 	padding: 0;
 	width: 100%;
 	height: 100%;
+	font-family: 'Roboto', sans-serif;
+	font-weight: 400;
+	font-size: 1em;
 }
 
 * {
@@ -18,6 +22,7 @@ body {
 	left: 0;
 	height: 100%;
 	width: 100%;
+	background-color: #E0E0DC;
 }
 
 .middle {
@@ -28,13 +33,14 @@ body {
 .inner {
 	margin-left: auto;
 	margin-right: auto;
-	width: 500px;
+	width: 45em;
+	background-color: whitesmoke;
 }
 
 
 .header{
-	padding: 4%;
-	background-color: #d92424;
+	padding: 3%;
+	background-image: linear-gradient(to right bottom, #3f8aff, #4471f0, #4e56de, #5a38c8, #6300b0);
 	width: inherit;
 	display: inline-flex;
 	flex-flow: row;
@@ -46,13 +52,24 @@ body {
 .title{
 	width: 100%;
 	color: #f2f2f2;
-	font-family: 'Roboto Condensed', sans-serif;
+	font-family: 'Baloo Bhai', cursive;
 	font-size: 4em;
 }
 
 .version{
 	font-size: 0.60em;
 	flex-shrink: 0;
+}
+
+.bottom{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-evenly;
+	padding: 0.5em;
+	background-color: #24292E;
+	color: whitesmoke;
+	font-size: 0.7em;
 }
 
 @media only screen and (max-width: 768px) {
@@ -66,5 +83,9 @@ body {
 
 	.title{
 		font-size: 3em;
+	}
+
+	.outer{
+		background-image: none;
 	}
 }

@@ -1,10 +1,17 @@
-var socket = io.connect('192.168.1.100:3000', {path: window.location.pathname});
+var socket = io.connect('192.168.1.129:3000', {path: window.location.pathname});
 var uploader = new SocketIOFileClient(socket);
 
 function uploadNewFiles(files){
 	uploader.upload(files);
-	uploader.on("stream", (fileInfo) => console.log(fileInfo.name + ' ' + fileInfo.sent+'/'+fileInfo.size))
-	uploader.on("complete", (fileInfo) => console.log(fileInfo.name+" correttamente inviato"));
+	uploader.on("stream", (fileInfo) => {
+		console.log(fileInfo.name + ' ' + fileInfo.sent+'/'+fileInfo.size);
+		let sent = Math.floor(fileInfo.sent * 100/fileInfo.size);
+		document.getElementById(fileInfo.name).style.background = "linear-gradient(to right, #B5FFA8 "+sent+"%, white "+sent+"%)";
+	});
+	uploader.on("complete", (fileInfo) => {
+		console.log(fileInfo.name+" correttamente inviato");
+		document.getElementById(fileInfo.name).style.background = "linear-gradient(to right, #B5FFA8 100%, white 100%)";
+	});
 }
 
 function deleteFile(file){
@@ -26,6 +33,7 @@ socket.on("file_deleted", function(filename){
 		if(files[x].name==filename)
 			files.splice(x, 1);
 	document.getElementById(filename).remove();
+	isEmpty();
 });
 
 socket.on("timerUp", () => location.reload());
